@@ -1,0 +1,5 @@
+C:\Users\Aurelian\Source\Repos\Blog\AcademiaCerului\AcademiaCerului.Core\bin\Debug\AcademiaCerului.Core.dll
+C:\Users\Aurelian\Source\Repos\Blog\AcademiaCerului\AcademiaCerului.Core\bin\Debug\AcademiaCerului.Core.pdb
+C:\Users\Aurelian\Source\Repos\Blog\AcademiaCerului\AcademiaCerului.Core\obj\Debug\AcademiaCerului.Core.csprojResolveAssemblyReference.cache
+C:\Users\Aurelian\Source\Repos\Blog\AcademiaCerului\AcademiaCerului.Core\obj\Debug\AcademiaCerului.Core.dll
+C:\Users\Aurelian\Source\Repos\Blog\AcademiaCerului\AcademiaCerului.Core\obj\Debug\AcademiaCerului.Core.pdb
