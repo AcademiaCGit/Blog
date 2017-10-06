@@ -8,3 +8,10 @@ D:\Blog\AcademiaCerului.Core\bin\Debug\AcademiaCerului.Core.pdb
 D:\Blog\AcademiaCerului.Core\obj\Debug\AcademiaCerului.Core.csprojResolveAssemblyReference.cache
 D:\Blog\AcademiaCerului.Core\obj\Debug\AcademiaCerului.Core.dll
 D:\Blog\AcademiaCerului.Core\obj\Debug\AcademiaCerului.Core.pdb
+D:\Blog\AcademiaCerului.Core\bin\Debug\FluentNHibernate.dll
+D:\Blog\AcademiaCerului.Core\bin\Debug\Iesi.Collections.dll
+D:\Blog\AcademiaCerului.Core\bin\Debug\NHibernate.dll
+D:\Blog\AcademiaCerului.Core\bin\Debug\FluentNHibernate.pdb
+D:\Blog\AcademiaCerului.Core\bin\Debug\FluentNHibernate.xml
+D:\Blog\AcademiaCerului.Core\bin\Debug\Iesi.Collections.xml
+D:\Blog\AcademiaCerului.Core\bin\Debug\NHibernate.xml

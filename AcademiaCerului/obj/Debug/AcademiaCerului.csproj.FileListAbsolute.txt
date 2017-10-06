@@ -42,3 +42,10 @@ D:\Blog\AcademiaCerului\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.x
 D:\Blog\AcademiaCerului\obj\Debug\AcademiaCerului.csprojResolveAssemblyReference.cache
 D:\Blog\AcademiaCerului\obj\Debug\AcademiaCerului.dll
 D:\Blog\AcademiaCerului\obj\Debug\AcademiaCerului.pdb
+D:\Blog\AcademiaCerului\bin\FluentNHibernate.dll
+D:\Blog\AcademiaCerului\bin\NHibernate.dll
+D:\Blog\AcademiaCerului\bin\Iesi.Collections.dll
+D:\Blog\AcademiaCerului\bin\FluentNHibernate.pdb
+D:\Blog\AcademiaCerului\bin\FluentNHibernate.xml
+D:\Blog\AcademiaCerului\bin\NHibernate.xml
+D:\Blog\AcademiaCerului\bin\Iesi.Collections.xml
