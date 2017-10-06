@@ -3,3 +3,8 @@ C:\Users\Aurelian\Source\Repos\Blog\AcademiaCerului\AcademiaCerului.Core\bin\Deb
 C:\Users\Aurelian\Source\Repos\Blog\AcademiaCerului\AcademiaCerului.Core\obj\Debug\AcademiaCerului.Core.csprojResolveAssemblyReference.cache
 C:\Users\Aurelian\Source\Repos\Blog\AcademiaCerului\AcademiaCerului.Core\obj\Debug\AcademiaCerului.Core.dll
 C:\Users\Aurelian\Source\Repos\Blog\AcademiaCerului\AcademiaCerului.Core\obj\Debug\AcademiaCerului.Core.pdb
+D:\Blog\AcademiaCerului.Core\bin\Debug\AcademiaCerului.Core.dll
+D:\Blog\AcademiaCerului.Core\bin\Debug\AcademiaCerului.Core.pdb
+D:\Blog\AcademiaCerului.Core\obj\Debug\AcademiaCerului.Core.csprojResolveAssemblyReference.cache
+D:\Blog\AcademiaCerului.Core\obj\Debug\AcademiaCerului.Core.dll
+D:\Blog\AcademiaCerului.Core\obj\Debug\AcademiaCerului.Core.pdb
