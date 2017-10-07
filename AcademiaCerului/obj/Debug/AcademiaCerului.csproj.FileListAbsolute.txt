@@ -49,3 +49,7 @@ D:\Blog\AcademiaCerului\bin\FluentNHibernate.pdb
 D:\Blog\AcademiaCerului\bin\FluentNHibernate.xml
 D:\Blog\AcademiaCerului\bin\NHibernate.xml
 D:\Blog\AcademiaCerului\bin\Iesi.Collections.xml
+D:\Blog\AcademiaCerului\bin\Ninject.dll
+D:\Blog\AcademiaCerului\bin\Ninject.Web.Common.dll
+D:\Blog\AcademiaCerului\bin\Ninject.xml
+D:\Blog\AcademiaCerului\bin\Ninject.Web.Common.xml

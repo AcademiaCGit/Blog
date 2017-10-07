@@ -15,3 +15,7 @@ D:\Blog\AcademiaCerului.Core\bin\Debug\FluentNHibernate.pdb
 D:\Blog\AcademiaCerului.Core\bin\Debug\FluentNHibernate.xml
 D:\Blog\AcademiaCerului.Core\bin\Debug\Iesi.Collections.xml
 D:\Blog\AcademiaCerului.Core\bin\Debug\NHibernate.xml
+D:\Blog\AcademiaCerului.Core\bin\Debug\Ninject.dll
+D:\Blog\AcademiaCerului.Core\bin\Debug\Ninject.Web.Common.dll
+D:\Blog\AcademiaCerului.Core\bin\Debug\Ninject.xml
+D:\Blog\AcademiaCerului.Core\bin\Debug\Ninject.Web.Common.xml
