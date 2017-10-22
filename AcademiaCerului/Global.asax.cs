@@ -9,16 +9,6 @@ namespace AcademiaCerului
 {
     public class MvcApplication : NinjectHttpApplication
     {
-        protected void Application_Start()
-        {
-            AreaRegistration.RegisterAllAreas();
-            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
-            base.OnApplicationStarted();
-        }
-
         protected override IKernel CreateKernel()
         {
             var kernel = new StandardKernel();
@@ -27,6 +17,13 @@ namespace AcademiaCerului
             kernel.Bind<IBlogRepository>().To<BlogRepository>();
 
             return kernel;
+        }
+
+        protected override void OnApplicationStarted()
+        {
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
+            base.OnApplicationStarted();
         }
     }
 }
