@@ -188,6 +188,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Blog\List.cshtml" />
     <Content Include="Views\Shared\_PostTemplate.cshtml" />
+    <Content Include="Views\Shared\_Pager.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
