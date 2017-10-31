@@ -1,52 +1,21 @@
 ﻿@model AcademiaCerului.Core.Objects.Post
 
-<div class="post">
-    <div class="post-meta">
-        <div class="row">
-
-            <!--Heading-->
-            <div class="post-title">
-                <h2>@Html.PostLink(Model)</h2>
+<div class="col-md-12">
+    <div class="card">
+        <img class="card-img-top" src="~/Content/images/kingfisher-2363879_1920.jpg" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="postDate">@Model.PostedOn.ToConfigLocalTime()</h5>
+            <h1 class="card-title">@Html.PostLink(Model)</h1>
+            <h5 class="card-subtitle mb-2 text-muted">Categorie: @Html.CategoryLink(Model.Category)</h5>
+            <h5 class="card-subtitle mb-2 text-muted">Tag: @Helpers.Tags(Html, Model.Tags)</h5>
+            <p class="card-text">@Html.Raw(Model.ShortDescription)</p>
+            <div class="readMoreBtn">
+                <button class="btn btn-primary"
+                        @Html.ActionLink("Citeste", "Post", "Blog", new { year = Model.PostedOn.Year, month = Model.PostedOn.Month, day = Model.PostedOn.Day })
+                </button>
             </div>
-
         </div>
-
-        <div class="row">
-
-            <!--Category-->
-            <div class="post-category">
-                <span>Category: </span>@Html.CategoryLink(Model.Category)
-            </div>
-
-            <!--Tags-->
-            <div class="post-tags">
-                <span>Tags:</span>@Helpers.Tags(Html, Model.Tags)
-            </div>
-
-            <!--Posted date-->
-            <div class="posted-date">
-                @Model.PostedOn.ToConfigLocalTime()
-            </div>
-
-        </div>
-
-    </div>
-
-    <!--Short Description-->
-    <div class="post-body">
-        @Html.Raw(Model.ShortDescription)
-    </div>
-
-    <div class="post-foot">
-        @Html.ActionLink("continue...", "post", "blog",
-        new
-        {
-            year = Model.PostedOn.Year,
-            month = Model.PostedOn.Month,
-            day = Model.PostedOn.Day,
-            title = Model.UrlSlug
-        },
-        new { title = "continue..." }
-    )
     </div>
 </div>
+
+<br />

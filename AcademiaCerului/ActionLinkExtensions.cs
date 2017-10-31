@@ -1,5 +1,4 @@
 ﻿using AcademiaCerului.Core.Objects;
-using System;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
 
@@ -26,14 +25,14 @@ namespace AcademiaCerului
         {
             return helper.ActionLink(category.Name, "Category", "Blog",
                 new { category = category.UrlSlug },
-                new { title = string.Format("Seee all posts in {0}", category.Name) });
+                new { title = string.Format("Vezi toate postarile din {0}", category.Name) });
         }
 
         public static MvcHtmlString TagLink(this HtmlHelper helper, Tag tag)
         {
             return helper.ActionLink(tag.Name, "Tag", "Blog",
                 new { tag = tag.UrlSlug },
-                new { title = string.Format("See all posts in {0}", tag.Name) });
+                new { title = string.Format("Vezi toate postarile din {0}", tag.Name) });
         }
     }
 }

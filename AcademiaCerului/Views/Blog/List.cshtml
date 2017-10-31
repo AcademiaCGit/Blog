@@ -1,24 +1,21 @@
-﻿
-@model AcademiaCerului.Models.ListViewModel
+﻿@model AcademiaCerului.Models.ListViewModel
 
 @{
-    ViewBag.Title = "List";
+    ViewBag.Title = "Toate postarile";
 }
 <p>
     AM RAMAS LA:
-    Paginare
+    Story #2 - Display posts based on category
 </p>
 
 <div id="content">
     <h1>@ViewBag.Title</h1>
 
-    @Html.Partial("_Pager", Model)
-
     @if (Model.Posts.Count > 0)
     {
         foreach (var post in Model.Posts)
         {
-            Html.Partial("_PostTemplate", post);
+            @Html.Partial("_PostTemplate", post);
         }
     }
     else

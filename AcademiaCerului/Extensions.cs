@@ -8,7 +8,7 @@ namespace AcademiaCerului
         public static string ToConfigLocalTime(this DateTime utcDateTime)
         {
             var timezoneInfo = TimeZoneInfo.FindSystemTimeZoneById(ConfigurationManager.AppSettings["Timezone"]);
-            return string.Format("{0} ({1})", TimeZoneInfo.ConvertTimeFromUtc(utcDateTime, timezoneInfo).ToShortDateString(), ConfigurationManager.AppSettings["TimezoneAbbr"]);
+            return TimeZoneInfo.ConvertTimeFromUtc(utcDateTime, timezoneInfo).ToShortDateString();
         }
     }
 }
