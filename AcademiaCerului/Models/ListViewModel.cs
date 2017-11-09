@@ -12,15 +12,26 @@ namespace AcademiaCerului.Models
             TotalPosts = blogRepository.TotalPosts();
         }
 
-        public ListViewModel(IBlogRepository blogRepository, string categorySlug, int pageNo)
+        public ListViewModel(IBlogRepository blogRepository, string slug, string type, int pageNo)
         {
-            Posts = blogRepository.PostsForCategory(categorySlug, pageNo - 1, 10);
-            TotalPosts = blogRepository.TotalPostsForCategory(categorySlug);
-            Category = blogRepository.Category(categorySlug);
+            switch (type)
+            {
+                case "Tag":
+                    Posts = blogRepository.PostsForTag(slug, pageNo - 1, 10);
+                    TotalPosts = blogRepository.TotalPostsForTag(slug);
+                    Tag = blogRepository.Tag(slug);
+                    break;
+                default:
+                    Posts = blogRepository.PostsForCategory(slug, pageNo - 1, 10);
+                    TotalPosts = blogRepository.TotalPostsForCategory(slug);
+                    Category = blogRepository.Category(slug);
+                    break;
+            }
         }
 
         public IList<Post> Posts { get; private set; }
         public int TotalPosts { get; private set; }
         public Category Category { get; private set; }
+        public Tag Tag { get; private set; }
     }
 }

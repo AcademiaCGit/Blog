@@ -25,12 +25,24 @@ namespace AcademiaCerului.Controllers
 
         public ViewResult GetPostsByCategory(string category, int pageNo = 1)
         {
-            var listViewModel = new ListViewModel(_blogRepository, category, pageNo);
+            var listViewModel = new ListViewModel(_blogRepository, category, "Category", pageNo);
 
             if (listViewModel.Category == null)
                 throw new HttpException(404, "Categoria nu a fost gasita");
 
-            ViewBag.Title = string.Format("Ultimile postari din categoria {0}", listViewModel.Category.Name);
+            ViewBag.Title = string.Format("Cele mai recente postari din categoria {0}", listViewModel.Category.Name);
+
+            return View("List", listViewModel);
+        }
+
+        public ViewResult GetPostsByTag(string tag, int pageNo = 1)
+        {
+            var listViewModel = new ListViewModel(_blogRepository, tag, "Tag", pageNo);
+
+            if (listViewModel.Tag == null)
+                throw new HttpException(404, "Eticheta nu a fost gasita");
+
+            ViewBag.Title = string.Format("Cele mai recente postari din eticheta {0}", listViewModel.Tag.Name);
 
             return View("List", listViewModel);
         }

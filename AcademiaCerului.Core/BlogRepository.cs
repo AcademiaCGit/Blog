@@ -3,6 +3,7 @@ using AcademiaCerului.Core.Objects;
 using NHibernate;
 using NHibernate.Linq;
 using System.Linq;
+using System;
 
 namespace AcademiaCerului.Core
 {
@@ -58,6 +59,30 @@ namespace AcademiaCerului.Core
                 .ToList();
         }
 
+        public IList<Post> PostsForTag(string tagSlug, int pageNo, int pageSize)
+        {
+            var posts = _session.Query<Post>()
+                .Where(p => p.Published && p.Tags.Any(t => t.UrlSlug.Equals(tagSlug)))
+                .OrderByDescending(p => p.PostedOn)
+                .Skip(pageNo * pageSize)
+                .Take(pageSize)
+                .Fetch(p => p.Category)
+                .ToList();
+
+            var postIds = posts.Select(p => p.Id).ToList();
+
+            return _session.Query<Post>()
+                .Where(p => postIds.Contains(p.Id))
+                .OrderByDescending(p => p.PostedOn)
+                .FetchMany(p => p.Tags)
+                .ToList();
+        }
+
+        public Tag Tag(string tagSlug)
+        {
+            return _session.Query<Tag>().FirstOrDefault(t => t.UrlSlug.Equals(tagSlug));
+        }
+
         public int TotalPosts()
         {
             return _session.Query<Post>().Where(p => p.Published).Count();
@@ -66,6 +91,11 @@ namespace AcademiaCerului.Core
         public int TotalPostsForCategory(string categorySlug)
         {
             return _session.Query<Post>().Where(x => x.Published && x.Category.UrlSlug.Equals(categorySlug)).Count();
+        }
+
+        public int TotalPostsForTag(string tagSlug)
+        {
+            return _session.Query<Post>().Where(x => x.Published && x.Tags.Any(t => t.UrlSlug.Equals(tagSlug))).Count();
         }
     }
 }

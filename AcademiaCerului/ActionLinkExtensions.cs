@@ -23,14 +23,14 @@ namespace AcademiaCerului
 
         public static MvcHtmlString CategoryLink(this HtmlHelper helper, Category category)
         {
-            return helper.ActionLink(category.Name, "Category", "Blog",
+            return helper.ActionLink(category.Name, "GetPostsByCategory", "Blog",
                 new { category = category.UrlSlug },
                 new { title = string.Format("Vezi toate postarile din {0}", category.Name) });
         }
 
         public static MvcHtmlString TagLink(this HtmlHelper helper, Tag tag)
         {
-            return helper.ActionLink(tag.Name, "Tag", "Blog",
+            return helper.ActionLink(tag.Name, "GetPostsByTag", "Blog",
                 new { tag = tag.UrlSlug },
                 new { title = string.Format("Vezi toate postarile din {0}", tag.Name) });
         }
