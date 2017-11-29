@@ -25,6 +25,7 @@
                     <li>@Html.ActionLink("Categorii", "", "")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>
+                @Html.Partial("_Search")
             </div>
         </div>
     </div>
@@ -32,12 +33,13 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Academia Cerului</p>
         </footer>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Scripts/app.js")
     @RenderSection("scripts", required: false)
 </body>
 </html>

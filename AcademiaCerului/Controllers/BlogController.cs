@@ -46,5 +46,14 @@ namespace AcademiaCerului.Controllers
 
             return View("List", listViewModel);
         }
+
+        public ViewResult GetPostsBySearch(ListViewModel model, int pageNo = 1)
+        {
+            ViewBag.Title = "Lista de postari gasite dupa textul cautat";
+
+            var viewModel = new ListViewModel(_blogRepository, model.Search, "Search", pageNo);
+
+            return View("List", viewModel);
+        }
     }
 }
