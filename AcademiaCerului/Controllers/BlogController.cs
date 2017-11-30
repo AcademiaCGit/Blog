@@ -69,5 +69,13 @@ namespace AcademiaCerului.Controllers
 
             return View("PostsList", viewModel);
         }
+
+        [ChildActionOnly]
+        public PartialViewResult Sidebars()
+        {
+            var widgetViewModel = new WidgetViewModel(_blogRepository);
+
+            return PartialView("_Sidebars", widgetViewModel);
+        }
     }
 }

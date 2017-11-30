@@ -9,6 +9,7 @@ namespace AcademiaCerului.Core
         IList<Post> PostsForCategory(string categorySlug, int pageNo, int pageSize);
         IList<Post> PostsForTag(string tagSlug, int pageNo, int pageSize);
         IList<Post> PostsForSearch(string search, int pageNo, int pageSize);
+        IList<Category> Categories();
         int TotalPosts();
         int TotalPostsForCategory(string categorySlug);
         int TotalPostsForTag(string tagSlug);

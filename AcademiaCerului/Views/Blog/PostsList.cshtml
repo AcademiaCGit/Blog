@@ -1,20 +1,26 @@
 ﻿@model AcademiaCerului.Models.ListViewModel
 
-<div id="content">
-    <h1>@ViewBag.Title</h1>
+<div id="content" class="row">
+    <div class="col-md-10">
+        <h1>@ViewBag.Title</h1>
 
-    @if (Model.Posts.Count > 0)
-    {
-        foreach (var post in Model.Posts)
+        @if (Model.Posts.Count > 0)
         {
-            @Html.Partial("_PostTemplate", post);
+            foreach (var post in Model.Posts)
+            {
+                @Html.Partial("_PostTemplate", post);
+            }
         }
-    }
-    else
-    {
-        <p>Nu exista postari</p>
-    }
+        else
+        {
+            <p>Nu exista postari</p>
+        }
 
-    @Html.Partial("_Pager", Model)
+        @Html.Partial("_Pager", Model)
+    </div>
+
+    <div class="col-md-2">
+        @Html.Action("Sidebars")
+    </div>
 </div>
 

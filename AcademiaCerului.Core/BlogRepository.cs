@@ -3,6 +3,7 @@ using AcademiaCerului.Core.Objects;
 using NHibernate;
 using NHibernate.Linq;
 using System.Linq;
+using System;
 
 namespace AcademiaCerului.Core
 {
@@ -13,6 +14,11 @@ namespace AcademiaCerului.Core
         public BlogRepository(ISession session)
         {
             _session = session;
+        }
+
+        public IList<Category> Categories()
+        {
+            return _session.Query<Category>().OrderBy(x => x.Name).ToList();
         }
 
         public Category Category(string categorySlug)
