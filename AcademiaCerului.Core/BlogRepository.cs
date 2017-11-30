@@ -118,6 +118,11 @@ namespace AcademiaCerului.Core
             return _session.Query<Tag>().FirstOrDefault(t => t.UrlSlug.Equals(tagSlug));
         }
 
+        public IList<Tag> Tags()
+        {
+            return _session.Query<Tag>().OrderBy(x => x.Name).ToList();
+        }
+
         public int TotalPosts()
         {
             return _session.Query<Post>().Where(p => p.Published).Count();
