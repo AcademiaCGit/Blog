@@ -20,7 +20,6 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Acasa", "Index", "Home")</li>
                     <li>@Html.ActionLink("Postari", "Posts", "Blog")</li>
                     <li>@Html.ActionLink("Categorii", "", "")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
@@ -39,7 +38,6 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/Scripts/app.js")
     @RenderSection("scripts", required: false)
 </body>
 </html>

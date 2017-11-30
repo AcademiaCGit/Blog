@@ -3,7 +3,6 @@ using AcademiaCerului.Core.Objects;
 using NHibernate;
 using NHibernate.Linq;
 using System.Linq;
-using System;
 
 namespace AcademiaCerului.Core
 {
@@ -19,6 +18,17 @@ namespace AcademiaCerului.Core
         public Category Category(string categorySlug)
         {
             return _session.Query<Category>().FirstOrDefault(x => x.UrlSlug.Equals(categorySlug));
+        }
+
+        public Post Post(int year, int month, string titleSlug)
+        {
+            var query = _session.Query<Post>()
+                .Where(p => p.PostedOn.Year == year && p.PostedOn.Month == month && p.UrlSlug.Equals(titleSlug))
+                .Fetch(p => p.Category);
+
+            query.FetchMany(p => p.Tags).ToFuture();
+
+            return query.ToFuture().Single();
         }
 
         public IList<Post> Posts(int pageNo, int pageSize)

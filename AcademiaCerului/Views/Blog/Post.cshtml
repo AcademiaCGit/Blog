@@ -8,12 +8,7 @@
             <h1 class="card-title">@Html.PostLink(Model)</h1>
             <h5 class="card-subtitle mb-2 text-muted">Categorie: @Html.CategoryLink(Model.Category)</h5>
             <h5 class="card-subtitle mb-2 text-muted">Tag: @Helpers.Tags(Html, Model.Tags)</h5>
-            <p class="card-text">@Html.Raw(Model.ShortDescription)</p>
-            <div class="readMoreBtn">
-                @Html.ActionLink("Citeste", "Post", "Blog", new { year = Model.PostedOn.Year, month = Model.PostedOn.Month, title = Model.UrlSlug }, new { @class = "btn btn-primary" })
-            </div>
+            <p class="card-text">@Html.Raw(Model.Description)</p>
         </div>
     </div>
 </div>
-
-<br />
