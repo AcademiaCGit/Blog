@@ -30,11 +30,10 @@
     </div>
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Academia Cerului</p>
-        </footer>
     </div>
+    <footer class="footer-wrap">
+        @Html.Partial("_Footer")
+    </footer>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
