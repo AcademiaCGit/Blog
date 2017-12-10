@@ -29,6 +29,18 @@ namespace AcademiaCerului
                 );
 
             routes.MapRoute(
+                "Login",
+                "Login",
+                new { controller = "Admin", action = "Login" }
+                );
+
+            routes.MapRoute(
+                "Logout",
+                "Logout",
+                new { controller = "Admin", action = "Logout" }
+                );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

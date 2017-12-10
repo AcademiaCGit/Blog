@@ -1,6 +1,5 @@
 ﻿using AcademiaCerului.Core;
 using AcademiaCerului.Models;
-using System;
 using System.Web;
 using System.Web.Mvc;
 
