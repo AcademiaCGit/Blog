@@ -1,23 +1,25 @@
 ﻿using AcademiaCerului.Models;
+using AcademiaCerului.Providers;
 using System.Web.Mvc;
-using System.Web.Security;
 
 namespace AcademiaCerului.Controllers
 {
     [Authorize]
     public class AdminController : Controller
     {
+        private readonly IAuthProvider _authProvider;
+
+        public AdminController(IAuthProvider authProvider)
+        {
+            _authProvider = authProvider;
+        }
+
         //[RequireHttps]
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
-            if (User.Identity.IsAuthenticated)
-            {
-                if (!string.IsNullOrWhiteSpace(returnUrl) && Url.IsLocalUrl(returnUrl))
-                    return Redirect(returnUrl);
-
-                return RedirectToAction("Manage");
-            }
+            if (_authProvider.IsLoggedIn)
+                return RedirectToUrl(returnUrl);
 
             ViewBag.ReturnUrl = returnUrl;
 
@@ -28,29 +30,37 @@ namespace AcademiaCerului.Controllers
         [HttpPost, AllowAnonymous, ValidateAntiForgeryToken]
         public ActionResult Login(LoginModel model, string returnUrl)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && _authProvider.Login(model.UserName, model.Password))
+                return RedirectToUrl(returnUrl);
+
+            ModelState.AddModelError("", "Utilizatorul sau parola este sunt incorecte");
+            return View(model);
+        }
+
+        private ActionResult RedirectToUrl(string returnUrl)
+        {
+            if (Url.IsLocalUrl(returnUrl))
             {
-                if (FormsAuthentication.Authenticate(model.UserName, model.Password))
-                {
-                    FormsAuthentication.SetAuthCookie(model.UserName, false);
-
-                    if (!string.IsNullOrWhiteSpace(returnUrl) && Url.IsLocalUrl(returnUrl))
-                        return Redirect(returnUrl);
-
-                    return RedirectToAction("Manage");
-                }
-
-                ModelState.AddModelError("", "Utilizatorul sau parola este sunt incorecte");
+                return Redirect(returnUrl);
             }
-
-            return View();
+            else
+            {
+                return RedirectToAction("Manage");
+            }
         }
 
         public ActionResult Logout()
         {
-            FormsAuthentication.SignOut();
+            _authProvider.Logout();
 
             return RedirectToAction("Login", "Admin");
         }
+
+        public ActionResult Manage()
+        {
+            return View();
+        }
+
+        //3.6.2 Create test project and configure NUnit and Rhino Mocks
     }
 }

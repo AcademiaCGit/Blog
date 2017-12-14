@@ -1,9 +1,9 @@
 ﻿using Ninject.Web.Common;
-using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using Ninject;
 using AcademiaCerului.Core;
+using AcademiaCerului.Providers;
 
 namespace AcademiaCerului
 {
@@ -15,6 +15,7 @@ namespace AcademiaCerului
 
             kernel.Load(new RepositoryModule());
             kernel.Bind<IBlogRepository>().To<BlogRepository>();
+            kernel.Bind<IAuthProvider>().To<AuthProvider>();
 
             return kernel;
         }
