@@ -17,6 +17,18 @@ namespace AcademiaCerului
             //    );
 
             routes.MapRoute(
+                "Manage",
+                "Manage",
+                new { controller = "Admin", action = "Manage" }
+                );
+
+            routes.MapRoute(
+                "AdminAction",
+                "Admin/{action}",
+                new { controller = "Admin", action = "Login" }
+            );
+
+            routes.MapRoute(
                 "Category",
                 "Category/{category}",
                 new { controller = "Blog", action = "GetPostsByCategory" }
