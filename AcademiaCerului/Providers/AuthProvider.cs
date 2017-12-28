@@ -1,32 +1,25 @@
-﻿using System;
-using System.Web;
-using System.Web.Security;
+﻿using System.Web;
+using static System.Web.Security.FormsAuthentication;
 
 namespace AcademiaCerului.Providers
 {
     public class AuthProvider : IAuthProvider
     {
-        public bool IsLoggedIn
-        {
-            get
-            {
-                return HttpContext.Current.User.Identity.IsAuthenticated;
-            }
-        }
+        public bool IsLoggedIn => HttpContext.Current.User.Identity.IsAuthenticated;
 
         public bool Login(string username, string password)
         {
-            bool result = FormsAuthentication.Authenticate(username, password);
+            var result = Authenticate(username, password);
 
             if (result)
-                FormsAuthentication.SetAuthCookie(username, false);
+                SetAuthCookie(username, false);
 
             return result;
         }
 
         public void Logout()
         {
-            FormsAuthentication.SignOut();
+            SignOut();
         }
     }
 }

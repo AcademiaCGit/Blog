@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcademiaCerului.Core", "Aca
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcademiaCerului", "AcademiaCerului\AcademiaCerului.csproj", "{62B549EB-548A-4DAA-8C15-5C5E022DF724}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcademiaCerului.Tests", "AcademiaCerului.Tests\AcademiaCerului.Tests.csproj", "{EC73C094-BAB2-4FA6-9CA9-133792EC71E4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{62B549EB-548A-4DAA-8C15-5C5E022DF724}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62B549EB-548A-4DAA-8C15-5C5E022DF724}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{62B549EB-548A-4DAA-8C15-5C5E022DF724}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC73C094-BAB2-4FA6-9CA9-133792EC71E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC73C094-BAB2-4FA6-9CA9-133792EC71E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC73C094-BAB2-4FA6-9CA9-133792EC71E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC73C094-BAB2-4FA6-9CA9-133792EC71E4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

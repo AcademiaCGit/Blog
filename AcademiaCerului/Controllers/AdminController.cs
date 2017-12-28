@@ -40,13 +40,9 @@ namespace AcademiaCerului.Controllers
         private ActionResult RedirectToUrl(string returnUrl)
         {
             if (Url.IsLocalUrl(returnUrl))
-            {
                 return Redirect(returnUrl);
-            }
-            else
-            {
-                return RedirectToAction("Manage");
-            }
+
+            return RedirectToAction("Manage");
         }
 
         public ActionResult Logout()
@@ -60,7 +56,5 @@ namespace AcademiaCerului.Controllers
         {
             return View();
         }
-
-        //3.6.2 Create test project and configure NUnit and Rhino Mocks
     }
 }
