@@ -6,12 +6,13 @@ namespace AcademiaCerului.Core
     public interface IBlogRepository
     {
         IList<Post> Posts(int pageNo, int pageSize);
+        IList<Post> Posts(int pageNo, int pageSize, string sortColumn, bool sortByAscending);
         IList<Post> PostsForCategory(string categorySlug, int pageNo, int pageSize);
         IList<Post> PostsForTag(string tagSlug, int pageNo, int pageSize);
         IList<Post> PostsForSearch(string search, int pageNo, int pageSize);
         IList<Category> Categories();
         IList<Tag> Tags();
-        int TotalPosts();
+        int TotalPosts(bool isPublished = true);
         int TotalPostsForCategory(string categorySlug);
         int TotalPostsForTag(string tagSlug);
         int TotalPostsForSearch(string search);

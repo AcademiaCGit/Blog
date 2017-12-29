@@ -19,3 +19,5 @@ D:\Blog\AcademiaCerului.Core\bin\Debug\Ninject.Web.Common.dll
 D:\Blog\AcademiaCerului.Core\bin\Debug\Ninject.xml
 D:\Blog\AcademiaCerului.Core\bin\Debug\Ninject.Web.Common.xml
 D:\Blog\AcademiaCerului.Core\obj\Debug\AcademiaCerului.Core.csprojResolveAssemblyReference.cache
+D:\Blog\AcademiaCerului.Core\bin\Debug\Newtonsoft.Json.dll
+D:\Blog\AcademiaCerului.Core\bin\Debug\Newtonsoft.Json.xml

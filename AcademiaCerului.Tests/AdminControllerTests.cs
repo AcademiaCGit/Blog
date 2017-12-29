@@ -1,4 +1,5 @@
 ﻿using AcademiaCerului.Controllers;
+using AcademiaCerului.Core;
 using AcademiaCerului.Models;
 using AcademiaCerului.Providers;
 using NUnit.Framework;
@@ -14,12 +15,14 @@ namespace AcademiaCerului.Tests
     {
         private AdminController _adminController;
         private IAuthProvider _authProvider;
+        private IBlogRepository _blogRepository;
 
         [SetUp]
         public void SetUp()
         {
             _authProvider = MockRepository.GenerateMock<IAuthProvider>();
-            _adminController = new AdminController(_authProvider);
+            _blogRepository = MockRepository.GenerateMock<IBlogRepository>();
+            _adminController = new AdminController(_authProvider, _blogRepository);
 
             var httpContextMock = MockRepository.GenerateMock<HttpContextBase>();
             _adminController.Url = new UrlHelper(new RequestContext(httpContextMock, new RouteData()));

@@ -57,3 +57,5 @@ D:\Blog\AcademiaCerului.Tests\bin\Debug\System.Web.Razor.xml
 D:\Blog\AcademiaCerului.Tests\bin\Debug\System.Web.WebPages.xml
 D:\Blog\AcademiaCerului.Tests\bin\Debug\System.Web.WebPages.Deployment.xml
 D:\Blog\AcademiaCerului.Tests\bin\Debug\System.Web.WebPages.Razor.xml
+D:\Blog\AcademiaCerului.Tests\bin\Debug\Newtonsoft.Json.dll
+D:\Blog\AcademiaCerului.Tests\bin\Debug\Newtonsoft.Json.xml
