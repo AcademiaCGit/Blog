@@ -23,5 +23,6 @@ namespace AcademiaCerului.Core
         Post Post(int year, int month, string titleSlug);
         int AddPost(Post post);
         void EditPost(Post post);
+        void DeletePost(int id);
     }
 }

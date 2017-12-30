@@ -296,12 +296,21 @@ AcademiaCerului.GridManager = {
             beforeSubmit: beforeSubmitHandler
         }
 
+        var deleteOptions = {
+            url: '/Admin/DeletePost',
+            caption: 'Șterge Postarea',
+            processData: "Se salvează...",
+            msg: "Sunteți sigur că doriți să ștergeți postarea ?",
+            closeOnEscape: true,
+            afterSubmit: AcademiaCerului.GridManager.afterSubmitHandler
+        }
+
         $(gridName).navGrid(pagerName,
                     {
                         cloneToTop: true,
                         search: false
                     },
-                    editOptions, addOptions, {});
+                    editOptions, addOptions, deleteOptions);
     },
 
     categoriesGrid: function (gridName, pagerName) {
