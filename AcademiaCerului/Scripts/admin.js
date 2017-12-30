@@ -59,26 +59,78 @@ AcademiaCerului.GridManager = {
         columns.push({
             name: 'Title',
             index: 'Title',
-            width: 250
+            width: 250,
+            editable: true,
+            editoptions: {
+                size: 43,
+                maxlength: 500
+            },
+            editrules: {
+                required: true
+            }
         });
 
         columns.push({
             name: 'ShortDescription',
             width: 250,
             sortable: false,
-            hidden: true
+            hidden: true,
+            editable: true,
+            edittype: 'textarea',
+            editoptions: {
+                rows: "10",
+                cols: "100"
+            },
+            editrules: {
+                custom: true,
+
+                custom_func: function (val, colname) {
+                    val = tinyMCE.get("ShortDescription").getContent();
+                    if (val) return [true, ""];
+                    return [false, colname + ": Câmpul este obligatoriu"];
+                },
+
+                edithidden: true
+            }
         });
 
         columns.push({
             name: 'Description',
             width: 250,
             sortable: false,
-            hidden: true
+            hidden: true,
+            editable: true,
+            edittype: 'textarea',
+            editoptions: {
+                rows: "40",
+                cols: "100"
+            },
+            editrules: {
+                custom: true,
+
+                custom_func: function(val, colname){
+                    val = tinyMCE.get("Description").getContent();
+                    if(val) return [true, ""];
+                    return [false, colname + ": Câmpul este obligatoriu"];
+                },
+
+                edithidden: true
+            }
         });
 
         columns.push({
             name: 'Category.Id',
-            hidden: true
+            hidden: true,
+            editable: true,
+            edittype: 'select',
+            editoptions: {
+                style: 'width:250px;',
+                dataUrl: '/Admin/GetCategoriesHtml'
+            },
+            editrules: {
+                required: true,
+                edithidden: true
+            }
         });
 
         columns.push({
@@ -89,26 +141,60 @@ AcademiaCerului.GridManager = {
 
         columns.push({
             name: 'Tags',
-            width: 150
+            width: 150,
+            editable: true,
+            edittype: 'select',
+            editoptions: {
+                style: 'width:250px;',
+                dataUrl: '/Admin/GetTagsHtml',
+                multiple: true
+            },
+            editrules: {
+                required: true
+            }
         });
 
         columns.push({
             name: 'Meta',
             width: 250,
-            sortable: false
+            sortable: false,
+            editable: true,
+            edittype: 'textarea',
+            editoptions: {
+                rows: "2",
+                cols: "40",
+                maxlength: 1000
+            },
+            editrules: {
+                required: true
+            }
         });
 
         columns.push({
             name: 'UrlSlug',
             width: 200,
-            sortable: false
+            sortable: false,
+            editable: true,
+            editoptions: {
+                size: 43,
+                maxlength: 200
+            },
+            editrules: {
+                required: true
+            }
         });
 
         columns.push({
             name: 'Published',
             index: 'Published',
             width: 100,
-            align: 'center'
+            align: 'center',
+            editable: true,
+            edittype: 'checkbox',
+            editoptions: {
+                value: "true:false",
+                defaultValue: 'false'
+            }
         });
 
         columns.push({
@@ -133,23 +219,20 @@ AcademiaCerului.GridManager = {
             url: '/Admin/Posts',
             datatype: 'json',
             mtype: 'GET',
-
             height: 'auto',
+            toppager: true,
 
             colNames: columnNames,
             colModel: columns,
 
-            toppager: true,
             pager: pagerName,
-            rowNumber: 10,
-            rowList: [10, 20, 30],
-
             rownumbers: true,
             rownumWidth: 40,
+            rowNum: 10,
+            rowList: [10, 20, 30],            
 
             sortname: 'PostedOn',
             sortorder: 'desc',
-
             viewrecords: true,
 
             jsonReader: { repeatitems: false },
@@ -166,11 +249,61 @@ AcademiaCerului.GridManager = {
                 $(gridName).setRowData(rowid, { "Tags": tagStr });
             }
         });
+
+        var afterShowForm = function (form) {
+            tinyMCE.execCommand('mceAddControl', false, "ShortDescription");
+            tinyMCE.execCommand('mceAddControl', false, "Description");
+        }
+
+        var onClose = function (form) {
+            tinyMCE.execCommand('mceRemoveControl', false, "ShortDescription");
+            tinyMCE.execCommand('mceRemoveControl', false, "Description");
+        }
+
+        var beforeSubmitHandler = function (postdata, form) {
+            var selRowData = $(gridName).getRowData($(gridName).getGridParam('selrow'));
+            if (selRowData["PostedOn"])
+                postdata.PostedOn = selRowData["PostedOn"];
+            postdata.ShortDescription = tinyMCE.get("ShortDescription").getContent();
+            postdata.Description = tinyMCE.get("Description").getContent();
+
+            return [true];
+        }
+
+        var addOptions = {
+            url: '/Admin/AddPost',
+            addCaption: 'Adaugă Postare',
+            processData: "Se salvează...",
+            width: 900,
+            closeAfterAdd: true,
+            closeOnEscape: true,
+            afterShowForm: afterShowForm,
+            onClose: onClose,
+            afterSubmit: AcademiaCerului.GridManager.afterSubmitHandler,
+            beforeSubmit: beforeSubmitHandler
+        }
+
+        $(gridName).navGrid(pagerName,
+                    {
+                        cloneToTop: true,
+                        search: false
+                    },
+                    {}, //add
+                    addOptions, // edit
+                    {}); // delete
     },
 
     categoriesGrid: function (gridName, pagerName) {
     },
 
     tagsGrid: function (gridName, pagerName) {
+    },
+
+    afterSubmitHandler: function (response, postdata) {
+        var json = $.parseJSON(response.responseText);
+
+        if (json) return [json.success, json.message, json.id];
+
+        return [false, "A apărut o eroare pe server", null];
     }
 }

@@ -17,7 +17,10 @@ namespace AcademiaCerului.Core
         int TotalPostsForTag(string tagSlug);
         int TotalPostsForSearch(string search);
         Category Category(string categorySlug);
+        Category Category(int id);
         Tag Tag(string tagSlug);
+        Tag Tag(int id); 
         Post Post(int year, int month, string titleSlug);
+        int AddPost(Post post);
     }
 }

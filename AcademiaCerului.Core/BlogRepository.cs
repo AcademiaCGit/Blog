@@ -16,9 +16,24 @@ namespace AcademiaCerului.Core
             _session = session;
         }
 
+        public int AddPost(Post post)
+        {
+            using (var transaction = _session.BeginTransaction())
+            {
+                _session.Save(post);
+                transaction.Commit();
+                return post.Id;
+            }
+        }
+
         public IList<Category> Categories()
         {
             return _session.Query<Category>().OrderBy(x => x.Name).ToList();
+        }
+
+        public Category Category(int id)
+        {
+            return _session.Query<Category>().FirstOrDefault(x => x.Id == id);
         }
 
         public Category Category(string categorySlug)
@@ -323,6 +338,11 @@ namespace AcademiaCerului.Core
                 .OrderByDescending(p => p.PostedOn)
                 .FetchMany(p => p.Tags)
                 .ToList();
+        }
+
+        public Tag Tag(int id)
+        {
+            return _session.Query<Tag>().FirstOrDefault(x => x.Id == id);
         }
 
         public Tag Tag(string tagSlug)

@@ -1,8 +1,10 @@
 ﻿using AcademiaCerului.Core;
+using AcademiaCerului.Core.Objects;
 using AcademiaCerului.Models;
 using AcademiaCerului.Providers;
 using Newtonsoft.Json;
 using System;
+using System.Text;
 using System.Web.Mvc;
 
 namespace AcademiaCerului.Controllers
@@ -74,6 +76,67 @@ namespace AcademiaCerului.Controllers
                 rows = posts,
                 total = Math.Ceiling(Convert.ToDouble(totalPosts) / model.rows)
             }, new CustomDateTimeConverter()), "application/json");
+        }
+
+        [HttpPost, ValidateInput(false)]
+        public ContentResult AddPost(Post post)
+        {
+            string json;
+
+            ModelState.Clear();
+
+            if (TryValidateModel(post))
+            {
+                var id = _blogRepository.AddPost(post);
+
+                json = JsonConvert.SerializeObject(new
+                {
+                    id = id,
+                    success = true,
+                    message = "Postarea a fost adăugată cu succes."
+                });
+            }
+            else
+            {
+                json = JsonConvert.SerializeObject(new
+                {
+                    id = 0,
+                    success = false,
+                    message = "Eroare la adăugarea postării"
+                });
+            }
+
+            return Content(json, "application/json");
+        }
+
+        public ContentResult GetCategoriesHtml()
+        {
+            var categories = _blogRepository.Categories();
+            var sb = new StringBuilder();
+            sb.AppendLine(@"<select>");
+
+            foreach (var category in categories)
+            {
+                sb.AppendLine(string.Format(@"<option value=""{0}"">{1}</option>", category.Id, category.Name));
+            }
+
+            sb.AppendLine(@"<select>");
+            return Content(sb.ToString(), "text/html");
+        }
+
+        public ContentResult GetTagsHtml()
+        {
+            var tags = _blogRepository.Tags();
+            var sb = new StringBuilder();
+            sb.AppendLine(@"<select multiple=""multiple"">");
+
+            foreach (var tag in tags)
+            {
+                sb.AppendLine(string.Format(@"<option value=""{0}"">{1}</option>", tag.Id, tag.Name));
+            }
+
+            sb.AppendLine(@"<select>");
+            return Content(sb.ToString(), "text/html");
         }
     }
 }

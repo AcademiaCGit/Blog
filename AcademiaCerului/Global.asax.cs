@@ -1,9 +1,11 @@
-﻿using Ninject.Web.Common;
-using System.Web.Optimization;
-using System.Web.Routing;
-using Ninject;
-using AcademiaCerului.Core;
+﻿using AcademiaCerului.Core;
+using AcademiaCerului.Core.Objects;
 using AcademiaCerului.Providers;
+using Ninject;
+using Ninject.Web.Common;
+using System.Web.Mvc;
+using System.Web.Routing;
+using System.Web.Optimization;
 
 namespace AcademiaCerului
 {
@@ -24,6 +26,7 @@ namespace AcademiaCerului
         {
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            ModelBinders.Binders.Add(typeof(Post), new PostModelBinder(Kernel));
             base.OnApplicationStarted();
         }
     }
