@@ -41,6 +41,15 @@ namespace AcademiaCerului.Core
             return _session.Query<Category>().FirstOrDefault(x => x.UrlSlug.Equals(categorySlug));
         }
 
+        public void EditPost(Post post)
+        {
+            using(var transaction = _session.BeginTransaction())
+            {
+                _session.SaveOrUpdate(post);
+                transaction.Commit();
+            }
+        }
+
         public Post Post(int year, int month, string titleSlug)
         {
             var query = _session.Query<Post>()

@@ -22,5 +22,6 @@ namespace AcademiaCerului.Core
         Tag Tag(int id); 
         Post Post(int year, int month, string titleSlug);
         int AddPost(Post post);
+        void EditPost(Post post);
     }
 }

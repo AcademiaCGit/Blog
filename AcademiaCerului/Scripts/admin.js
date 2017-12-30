@@ -108,9 +108,9 @@ AcademiaCerului.GridManager = {
             editrules: {
                 custom: true,
 
-                custom_func: function(val, colname){
+                custom_func: function (val, colname) {
                     val = tinyMCE.get("Description").getContent();
-                    if(val) return [true, ""];
+                    if (val) return [true, ""];
                     return [false, colname + ": Câmpul este obligatoriu"];
                 },
 
@@ -229,7 +229,7 @@ AcademiaCerului.GridManager = {
             rownumbers: true,
             rownumWidth: 40,
             rowNum: 10,
-            rowList: [10, 20, 30],            
+            rowList: [10, 20, 30],
 
             sortname: 'PostedOn',
             sortorder: 'desc',
@@ -283,14 +283,25 @@ AcademiaCerului.GridManager = {
             beforeSubmit: beforeSubmitHandler
         }
 
+        var editOptions = {
+            url: '/Admin/EditPost',
+            addCaption: 'Editează Postarea',
+            processData: "Se salvează...",
+            width: 900,
+            closeAfterEdit: true,
+            closeOnEscape: true,
+            afterShowForm: afterShowForm,
+            onClose: onClose,
+            afterSubmit: AcademiaCerului.GridManager.afterSubmitHandler,
+            beforeSubmit: beforeSubmitHandler
+        }
+
         $(gridName).navGrid(pagerName,
                     {
                         cloneToTop: true,
                         search: false
                     },
-                    {}, //add
-                    addOptions, // edit
-                    {}); // delete
+                    editOptions, addOptions, {});
     },
 
     categoriesGrid: function (gridName, pagerName) {
