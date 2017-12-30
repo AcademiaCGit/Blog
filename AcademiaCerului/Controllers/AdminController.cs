@@ -183,5 +183,18 @@ namespace AcademiaCerului.Controllers
             sb.AppendLine(@"<select>");
             return Content(sb.ToString(), "text/html");
         }
+
+        public ContentResult Categories()
+        {
+            var categories = _blogRepository.Categories();
+
+            return Content(JsonConvert.SerializeObject(new
+            {
+                page = 1,
+                records = categories.Count,
+                rows = categories,
+                total = 1
+            }), "application/json");
+        }
     }
 }

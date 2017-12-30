@@ -314,9 +314,93 @@ AcademiaCerului.GridManager = {
     },
 
     categoriesGrid: function (gridName, pagerName) {
+        var columnNames = ['Id', 'Name', 'UrlSlug', 'Description'];
+        var columns = [];
+
+        columns.push({
+            name: 'Id',
+            index: 'Id',
+            hidden: true,
+            sorttype: 'int',
+            key: true,
+            editable: false,
+            editoptions: {
+                readonly: true
+            }
+        });
+
+        columns.push({
+            name: 'Name',
+            index: 'Name',
+            width: 200,
+            editable: true,
+            edittype: 'text',
+            editoptions: {
+                size: 30,
+                maxlength: 50
+            },
+            editrules: {
+                required: true
+            }
+        });
+
+        columns.push({
+            name: 'UrlSlug',
+            index: 'UrlSlug',
+            width: 200,
+            editable: true,
+            edittype: 'text',
+            sortable: false,
+            editoptions: {
+                size: 30,
+                maxlength: 50
+            },
+            editrules: {
+                required: true
+            }
+        });
+
+        columns.push({
+            name: 'Description',
+            index: 'Description',
+            width: 200,
+            editable: true,
+            edittype: 'textarea',
+            sortable: false,
+            editoptions: {
+                rows: "4",
+                columns: "28"
+            }
+        });
+
+        $(gridName).jqGrid({
+            url: '/Admin/Categories',
+            datatype: 'json',
+            mtype: 'GET',
+            height: 'auto',
+            toppager: true,
+            colNames: columnNames,
+            colModel: columns,
+            pager: pagerName,
+            rownumbers: true,
+            rownumWidth: 40,
+            rowNum: 500,
+            sortname: 'Name',
+            loadonce: true,
+            jsonReader: {
+                repeatitems: false
+            }
+        });
+
+        $(gridName).jqGrid('navGrid', pagerName,
+            {
+                cloneToTop: true,
+                search: false
+            },
+            {}, {}, {});
     },
 
-    tagsGrid: function (gridName, pagerName) {
+    tagsGrid: function (gridName, pagerName) {        
     },
 
     afterSubmitHandler: function (response, postdata) {
