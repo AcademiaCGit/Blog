@@ -16,6 +16,16 @@ namespace AcademiaCerului.Core
             _session = session;
         }
 
+        public int AddCategory(Category category)
+        {
+            using (var transaction = _session.BeginTransaction())
+            {
+                _session.Save(category);
+                transaction.Commit();
+                return category.Id;
+            }
+        }
+
         public int AddPost(Post post)
         {
             using (var transaction = _session.BeginTransaction())

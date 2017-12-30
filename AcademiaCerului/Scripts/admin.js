@@ -392,15 +392,34 @@ AcademiaCerului.GridManager = {
             }
         });
 
+        var addOptions = {
+            url: '/Admin/AddCategory',
+            width: 400,
+            addCaption: 'Adaugă Categorie',
+            processData: "Se salvează...",
+            closeAfterAdd: true,
+            closeOnEscape: true,
+            afterSubmit: function (response, postdata) {
+                var json = $.parseJSON(response.responseText);
+
+                if (json) {
+                    $(gridName).jqGrid('setGridParam', { datatype: 'json' });
+                    return [json.success, json.message, json.id];
+                }
+
+                return [false, "A apărut o eroare pe server.", null];
+            }
+        }
+
         $(gridName).jqGrid('navGrid', pagerName,
             {
                 cloneToTop: true,
                 search: false
             },
-            {}, {}, {});
+            {}, addOptions, {});
     },
 
-    tagsGrid: function (gridName, pagerName) {        
+    tagsGrid: function (gridName, pagerName) {
     },
 
     afterSubmitHandler: function (response, postdata) {
@@ -408,6 +427,6 @@ AcademiaCerului.GridManager = {
 
         if (json) return [json.success, json.message, json.id];
 
-        return [false, "A apărut o eroare pe server", null];
+        return [false, "A apărut o eroare pe server.", null];
     }
 }

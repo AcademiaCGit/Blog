@@ -196,5 +196,34 @@ namespace AcademiaCerului.Controllers
                 total = 1
             }), "application/json");
         }
+
+        [HttpPost]
+        public ContentResult AddCategory([Bind(Exclude = "Id")] Category category)
+        {
+            string json;
+
+            if (ModelState.IsValid)
+            {
+                _blogRepository.AddCategory(category);
+
+                json = JsonConvert.SerializeObject(new
+                {
+                    id = category.Id,
+                    success = true,
+                    message = "Categoria a fost adăugată cu succes."
+                });
+            }
+            else
+            {
+                json = JsonConvert.SerializeObject(new
+                {
+                    id = 0,
+                    success = false,
+                    message = "Eroare la adăugarea categoriei"
+                });
+            }
+
+            return Content(json, "application/json");
+        }
     }
 }

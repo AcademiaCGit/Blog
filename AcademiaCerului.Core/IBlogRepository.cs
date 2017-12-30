@@ -24,5 +24,6 @@ namespace AcademiaCerului.Core
         int AddPost(Post post);
         void EditPost(Post post);
         void DeletePost(int id);
+        int AddCategory(Category category);
     }
 }
