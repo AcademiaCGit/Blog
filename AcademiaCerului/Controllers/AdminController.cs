@@ -282,7 +282,7 @@ namespace AcademiaCerului.Controllers
             }), "application/json");
         }
 
-        public ContentResult AddTag([Bind(Exclude ="Id")] Tag tag)
+        public ContentResult AddTag([Bind(Exclude = "Id")] Tag tag)
         {
             string json;
 
@@ -303,6 +303,34 @@ namespace AcademiaCerului.Controllers
                     id = 0,
                     success = false,
                     message = "Eroare la adăugarea etichetei."
+                });
+            }
+
+            return Content(json, "application/json");
+        }
+
+        [HttpPost]
+        public ContentResult EditTag(Tag tag)
+        {
+            string json;
+
+            if (ModelState.IsValid)
+            {
+                _blogRepository.EditTag(tag);
+                json = JsonConvert.SerializeObject(new
+                {
+                    id = tag.Id,
+                    success = true,
+                    message = "Modificările au fost salvate cu succes."
+                });
+            }
+            else
+            {
+                json = JsonConvert.SerializeObject(new
+                {
+                    id = 0,
+                    success = false,
+                    message = "Eroare la editarea etichetei."
                 });
             }
 

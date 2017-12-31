@@ -99,6 +99,15 @@ namespace AcademiaCerului.Core
             }
         }
 
+        public void EditTag(Tag tag)
+        {
+            using(var transaction = _session.BeginTransaction())
+            {
+                _session.SaveOrUpdate(tag);
+                transaction.Commit();
+            }
+        }
+
         public Post Post(int year, int month, string titleSlug)
         {
             var query = _session.Query<Post>()
