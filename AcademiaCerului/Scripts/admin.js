@@ -430,12 +430,22 @@ AcademiaCerului.GridManager = {
             }
         }
 
+        var deleteOptions = {
+            url: '/Admin/DeleteCategory',
+            caption: 'Șterge Categoria',
+            processData: "Se salvează...",
+            width: 500,
+            msg: 'Sunteți sigur că doriți să ștergeți categoria ?',
+            closeOnEscape: true,
+            afterSubmit : AcademiaCerului.GridManager.afterSubmitHandler
+        }
+
         $(gridName).jqGrid('navGrid', pagerName,
             {
                 cloneToTop: true,
                 search: false
             },
-            editOptions, addOptions, {});
+            editOptions, addOptions, deleteOptions);
     },
 
     tagsGrid: function (gridName, pagerName) {

@@ -51,6 +51,16 @@ namespace AcademiaCerului.Core
             return _session.Query<Category>().FirstOrDefault(x => x.UrlSlug.Equals(categorySlug));
         }
 
+        public void DeleteCategory(int id)
+        {
+            using (var transaction = _session.BeginTransaction())
+            {
+                var category = _session.Get<Category>(id);
+                _session.Delete(category);
+                transaction.Commit();
+            }
+        }
+
         public void DeletePost(int id)
         {
             using (var transtaction = _session.BeginTransaction())

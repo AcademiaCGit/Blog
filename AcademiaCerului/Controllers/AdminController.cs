@@ -253,5 +253,20 @@ namespace AcademiaCerului.Controllers
 
             return Content(json, "application/json");
         }
+
+        [HttpPost]
+        public ContentResult DeleteCategory(int id)
+        {
+            _blogRepository.DeleteCategory(id);
+
+            var json = JsonConvert.SerializeObject(new
+            {
+                id = 0,
+                success = true,
+                message = "a fost ștearsă cu succes."
+            });
+
+            return Content(json, "application/json");
+        }
     }
 }
