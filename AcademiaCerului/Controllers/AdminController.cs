@@ -268,5 +268,18 @@ namespace AcademiaCerului.Controllers
 
             return Content(json, "application/json");
         }
+
+        public ContentResult Tags()
+        {
+            var tags = _blogRepository.Tags();
+
+            return Content(JsonConvert.SerializeObject(new
+            {
+                page = 1,
+                records = tags.Count,
+                rows = tags,
+                total = 1
+            }), "application/json");
+        }
     }
 }
