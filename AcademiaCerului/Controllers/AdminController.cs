@@ -263,7 +263,7 @@ namespace AcademiaCerului.Controllers
             {
                 id = 0,
                 success = true,
-                message = "a fost ștearsă cu succes."
+                message = "Categoria a fost ștearsă cu succes."
             });
 
             return Content(json, "application/json");
@@ -333,6 +333,21 @@ namespace AcademiaCerului.Controllers
                     message = "Eroare la editarea etichetei."
                 });
             }
+
+            return Content(json, "application/json");
+        }
+
+        [HttpPost]
+        public ContentResult DeleteTag(int id)
+        {
+            _blogRepository.DeleteTag(id);
+
+            var json = JsonConvert.SerializeObject(new
+            {
+                id = 0,
+                success = true,
+                message = "Eticheta a fost ștearsă cu succes."
+            });
 
             return Content(json, "application/json");
         }

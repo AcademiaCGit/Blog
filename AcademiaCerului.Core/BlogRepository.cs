@@ -81,6 +81,16 @@ namespace AcademiaCerului.Core
             }
         }
 
+        public void DeleteTag(int id)
+        {
+            using(var transaction = _session.BeginTransaction())
+            {
+                var tag = _session.Get<Tag>(id);
+                _session.Delete(tag);
+                transaction.Commit();
+            }
+        }
+
         public void EditCategory(Category category)
         {
             using (var transaction = _session.BeginTransaction())

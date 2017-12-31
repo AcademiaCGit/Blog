@@ -565,12 +565,22 @@ AcademiaCerului.GridManager = {
             }
         }
 
+        var deleteOptions = {
+            url: '/Admin/DeleteTag',
+            caption: 'Șterge Eticheta',
+            processData: "Se salvează...",
+            width: 400,
+            msg: "Sunteți sigur că doriți să ștergeți eticheta ?",
+            closeOnEscape: true,
+            afterSubmit: AcademiaCerului.GridManager.afterSubmitHandler
+        }
+
         $(gridName).jqGrid('navGrid', pagerName,
             {
                 cloneToTop: true,
                 search: false
             },
-            editOptions, addOptions, {});
+            editOptions, addOptions, deleteOptions);
     },
 
     afterSubmitHandler: function (response, postdata) {
