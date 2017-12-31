@@ -27,5 +27,6 @@ namespace AcademiaCerului.Core
         int AddCategory(Category category);
         void EditCategory(Category category);
         void DeleteCategory(int id);
+        int AddTag(Tag tag);
     }
 }

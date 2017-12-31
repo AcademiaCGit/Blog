@@ -36,6 +36,16 @@ namespace AcademiaCerului.Core
             }
         }
 
+        public int AddTag(Tag tag)
+        {
+            using (var transaction = _session.BeginTransaction())
+            {
+                _session.Save(tag);
+                transaction.Commit();
+                return tag.Id;
+            }
+        }
+
         public IList<Category> Categories()
         {
             return _session.Query<Category>().OrderBy(x => x.Name).ToList();

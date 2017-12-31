@@ -527,12 +527,31 @@ AcademiaCerului.GridManager = {
             }
         });
 
+        addOptions = {
+            url: '/Admin/AddTag',
+            width: 400,
+            addCaption: 'Adaugă Etichetă',
+            processData: "Se salvează...",
+            closeAfterAdd: true,
+            closeOnEscape: true,
+            afterSubmit: function (response, postdata) {
+                var json = $.parseJSON(response.responseText);
+
+                if (json) {
+                    $(gridName).jqGrid('setGridParam', { datatype: 'json' });
+                    return [json.success, json.message, json.id];
+                }
+
+                return [false, "A apărut op eroare pe server", null];
+            }
+        }
+
         $(gridName).jqGrid('navGrid', pagerName,
             {
                 cloneToTop: true,
                 search: false
             },
-            {},{},{});
+            {}, addOptions, {});
     },
 
     afterSubmitHandler: function (response, postdata) {
