@@ -411,12 +411,31 @@ AcademiaCerului.GridManager = {
             }
         }
 
+        var editOptions = {
+            url: '/Admin/EditCategory',
+            width: 400,
+            editCaption: 'Editează Categoria',
+            processData: "Se salvează...",
+            closeAfterEdit: true,
+            closeOnEscape: true,
+            afterSubmit: function (response, postdata) {
+                var json = $.parseJSON(response.responseText);
+
+                if (json) {
+                    $(gridName).jqGrid('setGridParam', { datatype: 'json' });
+                    return [json.success, json.message, json.id];
+                }
+
+                return [false, "A apărut o eroare pe server.", null];
+            }
+        }
+
         $(gridName).jqGrid('navGrid', pagerName,
             {
                 cloneToTop: true,
                 search: false
             },
-            {}, addOptions, {});
+            editOptions, addOptions, {});
     },
 
     tagsGrid: function (gridName, pagerName) {

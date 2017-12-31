@@ -53,7 +53,7 @@ namespace AcademiaCerului.Core
 
         public void DeletePost(int id)
         {
-            using(var transtaction = _session.BeginTransaction())
+            using (var transtaction = _session.BeginTransaction())
             {
                 var post = _session.Get<Post>(id);
                 _session.Delete(post);
@@ -61,9 +61,18 @@ namespace AcademiaCerului.Core
             }
         }
 
+        public void EditCategory(Category category)
+        {
+            using (var transaction = _session.BeginTransaction())
+            {
+                _session.SaveOrUpdate(category);
+                transaction.Commit();
+            }
+        }
+
         public void EditPost(Post post)
         {
-            using(var transaction = _session.BeginTransaction())
+            using (var transaction = _session.BeginTransaction())
             {
                 _session.SaveOrUpdate(post);
                 transaction.Commit();

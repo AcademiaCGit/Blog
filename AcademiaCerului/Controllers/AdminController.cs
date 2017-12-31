@@ -132,7 +132,7 @@ namespace AcademiaCerului.Controllers
                 {
                     id = 0,
                     success = false,
-                    message = "Eroare la salvarea postării"
+                    message = "Eroare la editarea postării"
                 });
             }
 
@@ -220,6 +220,34 @@ namespace AcademiaCerului.Controllers
                     id = 0,
                     success = false,
                     message = "Eroare la adăugarea categoriei"
+                });
+            }
+
+            return Content(json, "application/json");
+        }
+
+        [HttpPost]
+        public ContentResult EditCategory(Category category)
+        {
+            string json;
+
+            if (ModelState.IsValid)
+            {
+                _blogRepository.EditCategory(category);
+                json = JsonConvert.SerializeObject(new
+                {
+                    id = category.Id,
+                    success = true,
+                    message = "Modificările au fost salvate cu succes."
+                });
+            }
+            else
+            {
+                json = JsonConvert.SerializeObject(new
+                {
+                    id = 0,
+                    success = false,
+                    message = "Eroare la editarea categoriei."
                 });
             }
 
