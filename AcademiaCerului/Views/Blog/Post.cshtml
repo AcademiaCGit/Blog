@@ -1,5 +1,9 @@
 ﻿@model AcademiaCerului.Core.Objects.Post
 
+@*@{
+    ViewBag.Title = Model.Title
+}*@
+
 <div class="col-md-12">
     <div class="card">
         <img class="card-img-top" src="~/Content/images/kingfisher-2363879_1920.jpg" alt="Card image cap">
@@ -10,5 +14,8 @@
             <h5 class="card-subtitle mb-2 text-muted">Tag: @Helpers.Tags(Html, Model.Tags)</h5>
             <p class="card-text">@Html.Raw(Model.Description)</p>
         </div>
+    </div>
+    <div>
+        @Html.Partial("_Disqus")
     </div>
 </div>
