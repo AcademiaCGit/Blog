@@ -31,7 +31,7 @@ namespace AcademiaCerului.Controllers
         {
             var listViewModel = new ListViewModel(_blogRepository, pageNo);
 
-            ViewBag.Title = "Toate postarile";
+            ViewBag.Title = "Toate postările";
 
             return View("PostsList", listViewModel);
         }

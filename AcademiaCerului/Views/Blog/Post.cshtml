@@ -1,8 +1,10 @@
 ﻿@model AcademiaCerului.Core.Objects.Post
 
-@*@{
-    ViewBag.Title = Model.Title
-}*@
+@{
+    ViewBag.Title = Model.Title;
+}
+
+<br/>
 
 <div class="col-md-12">
     <div class="card">
@@ -10,6 +12,7 @@
         <div class="card-body">
             <h5 class="postDate">@Model.PostedOn.ToConfigLocalTime()</h5>
             <h1 class="card-title">@Html.PostLink(Model)</h1>
+            @Html.Partial("_AddThis")
             <h5 class="card-subtitle mb-2 text-muted">Categorie: @Html.CategoryLink(Model.Category)</h5>
             <h5 class="card-subtitle mb-2 text-muted">Tag: @Helpers.Tags(Html, Model.Tags)</h5>
             <p class="card-text">@Html.Raw(Model.Description)</p>
