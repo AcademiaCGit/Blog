@@ -35,7 +35,7 @@
         @Html.Partial("_Footer")
     </footer>
 
-    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jquery", "~/bundles/jqueryval", "~/bundles/jqueryunobtrusiveval")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
