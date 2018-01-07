@@ -141,6 +141,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="CustomDateTimeConverter.cs" />
     <Compile Include="Extensions.cs" />
@@ -611,6 +612,8 @@
     <Content Include="Views\Admin\Manage.cshtml" />
     <Content Include="Views\Shared\_Disqus.cshtml" />
     <Content Include="Views\Shared\_AddThis.cshtml" />
+    <Content Include="Views\Error\Index.cshtml" />
+    <Content Include="Views\Error\NotFound.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
