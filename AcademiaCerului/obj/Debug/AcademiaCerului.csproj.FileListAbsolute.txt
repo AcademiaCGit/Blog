@@ -54,3 +54,4 @@ D:\Blog\AcademiaCerului\bin\FluentNHibernate.xml
 D:\Blog\AcademiaCerului\bin\Iesi.Collections.xml
 D:\Blog\AcademiaCerului\obj\Debug\AcademiaCerului.dll
 D:\Blog\AcademiaCerului\obj\Debug\AcademiaCerului.pdb
+D:\Blog\AcademiaCerului\bin\Elmah.dll

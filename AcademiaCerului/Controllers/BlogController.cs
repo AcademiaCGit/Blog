@@ -1,5 +1,6 @@
 ﻿using AcademiaCerului.Core;
 using AcademiaCerului.Models;
+using System;
 using System.Web;
 using System.Web.Mvc;
 
@@ -75,6 +76,11 @@ namespace AcademiaCerului.Controllers
             var widgetViewModel = new WidgetViewModel(_blogRepository);
 
             return PartialView("_Sidebars", widgetViewModel);
+        }
+
+        public ActionResult BadAction()
+        {
+            throw new Exception("Not implemented");
         }
     }
 }
