@@ -1,0 +1,38 @@
+﻿@model AcademiaCerului.Core.Objects.Contact
+
+@{
+    ViewBag.Title = "Contact";
+}
+
+<h1>Academia Cerului Contact</h1>
+
+<div id="content">
+    @using (Html.BeginForm())
+    {
+        <p>
+            <span>Nume</span>
+            @Html.TextBoxFor(m => m.Name)
+            @Html.ValidationMessageFor(m => m.Name)
+        </p>
+
+        <p>
+            <span>Email</span>
+            @Html.TextBoxFor(m => m.Email)
+            @Html.ValidationMessageFor(m => m.Email)
+        </p>
+
+        <p>
+            <span>Subiect</span>
+            @Html.TextBoxFor(m => m.Subject)
+            @Html.ValidationMessageFor(m => m.Subject)
+        </p>
+
+        <p>
+            <span>Conținut</span>
+            @Html.TextAreaFor(m => m.Body, new { rows = 10 })
+            @Html.ValidationMessageFor(m => m.Body)
+        </p>
+
+        <input type="submit" name="contact_submitted" value="Trimite" />
+    }
+</div>

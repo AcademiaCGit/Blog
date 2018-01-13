@@ -1,5 +1,9 @@
 ﻿using AcademiaCerului.Core;
+using AcademiaCerului.Core.Objects;
 using AcademiaCerului.Models;
+using System.Configuration;
+using System.Net.Mail;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -24,7 +28,7 @@ namespace AcademiaCerului.Controllers
             if (post.Published == false && User.Identity.IsAuthenticated == false)
                 throw new HttpException(401, "Postarea nu este publicată");
 
-            return View(post); 
+            return View(post);
         }
 
         public ViewResult Posts(int pageNo = 1)
@@ -75,6 +79,43 @@ namespace AcademiaCerului.Controllers
             var widgetViewModel = new WidgetViewModel(_blogRepository);
 
             return PartialView("_Sidebars", widgetViewModel);
+        }
+
+        public ViewResult Contact()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ViewResult Contact(Contact contact)
+        {
+            if (ModelState.IsValid)
+            {
+                using (var client = new SmtpClient())
+                {
+                    var adminEmail = ConfigurationManager.AppSettings["AdminEmail"];
+                    var from = new MailAddress(adminEmail, "Mesagerie - Academia Cerului");
+                    var to = new MailAddress(adminEmail, "Administrator - Academia Cerului");
+
+                    using (var message = new MailMessage(from, to))
+                    {
+                        message.Body = contact.Body;
+                        message.IsBodyHtml = true;
+                        message.BodyEncoding = Encoding.UTF8;
+
+                        message.Subject = contact.Subject;
+                        message.SubjectEncoding = Encoding.UTF8;
+
+                        message.ReplyTo = new MailAddress(contact.Email);
+
+                        client.Send(message);
+                    }
+                }
+
+                return View("Thanks");
+            }
+
+            return View();
         }
     }
 }
